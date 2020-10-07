@@ -1,16 +1,24 @@
-# This is a sample Python script.
+import csv
+import functies
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+supergroepenlijst = {
+    'Graanproducten_aardappelen': ['Graanproducten en bindmiddelen (voor vers bereide gerechten)', 'aardapppelen & knolgewassen'],
+    'Broodbeleg hartig': ['Broodbeleg hartig (self-service/kleinverpakking)', 'Broodbeleg hartig (vers bereide broodjes)'],
+    "Broodbeleg_zoet": ['Broodbeleg zoet (self-service/kleinverpakking)', 'Broodbeleg zoet (vers bereide broodjes)'],
+    "Snacks_zoet": ["Snacks (zoet)"],
+    "Snacks_Hartig": ["Snacks (hartig)"],
+    "Handfruit_(snack)groente": ["Fruit (handfruit/self-service)", "Groente (snack/self-service)"],
+    "Dranken": ["Dranken (alcoholisch)", "Dranken (niet alcoholisch)"],
+    "Kant_klaar_maaltijden": ["Kant en klaar maaltijden"],
+    "Frituur_bladerdeegproducten": ["Frituur en bladerdeegproducten"],
+    "Graanproducten": ["Graanproducten (self-service)"],
+    "Zuivel_(exclusief zuiveldranken)_kaas_en_eieren": ["Eieren", "Kaas", "Zuivel (exclusief zuiveldranken)"],
+
+}
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+with open('csv/Dataexcelcsv.csv') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=';')
+    data = list(reader)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+functies.omzetperperdiodevoorsuperproductgroep(data, supergroepenlijst)
