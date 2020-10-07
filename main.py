@@ -21,4 +21,7 @@ with open('csv/Dataexcelcsv.csv') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     data = list(reader)
 
-functies.omzetperperdiodevoorsuperproductgroep(data, supergroepenlijst)
+for x, y in functies.omzetperperdiodevoorsuperproductgroep(data, supergroepenlijst).items():
+    print(x,y)
+
+

@@ -14,8 +14,14 @@ def omzetperperiodevoorproductgroep(productenlijst, productgroep):
 
 
 def omzetperperdiodevoorsuperproductgroep(productenlijst, supergroepenlijst):
+    # voor elk item in de supergroeplijst checkt het systeem of een item vaker voorkomt
+    dictionary = {}
     for spg, productgroepen in supergroepenlijst.items():
         totaal = 0.0
+        # voor elke productgroep in de productgroepen maakt hij er een dictionary van
         for pg in productgroepen:
             totaal += omzetperperiodevoorproductgroep(productenlijst, pg)
-        print(spg + ": " + str(totaal))
+        dictionary[spg] = totaal
+
+    return dictionary
+
