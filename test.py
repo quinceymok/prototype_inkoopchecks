@@ -1,10 +1,13 @@
 import functies, unittest, csv
+from main import superproductgroepenlijst
 
 
 class Testformulasmethods(unittest.TestCase):
 
     def testminus(self):
-        """Deze functie test of het goed gaat als de som eindigt op minus"""
+        """
+        Deze functie test of het goed gaat als de som eindigt op minus
+        """
         with open('csv/test_inkoopcheck_1.csv') as csvfile:
             reader = csv.DictReader(csvfile, delimiter=';')
             data = list(reader)
@@ -13,7 +16,10 @@ class Testformulasmethods(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_2(self):
-        """Deze test checkt of de productgroepen die niet in de productenlijst staan worden meegerekend"""
+        """
+        Deze test checkt of de productgroepen die niet in de productenlijst staan worden meegerekend
+
+        """
         with open('csv/test_inkoopcheck_2.csv') as csvfile:
             reader = csv.DictReader(csvfile, delimiter=';')
             data = list(reader)
@@ -22,8 +28,11 @@ class Testformulasmethods(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_3(self):
-        """deze test checks of de som nog steeds bij elkaar wordt opgeteld, wanneer de waardes van de inkoopvolumes in
-        kommagetallen worden vermeld """
+        """
+        deze test checks of de som nog steeds bij elkaar wordt opgeteld, wanneer de waardes van de inkoopvolumes in
+        kommagetallen worden vermeld
+
+        """
         with open('csv/test_inkoopcheck_3.csv') as csvfile:
             reader = csv.DictReader(csvfile, delimiter=';')
             data = list(reader)
@@ -33,9 +42,11 @@ class Testformulasmethods(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_4(self):
-        """ Deze test checkt of de dictionaries gelijk zijn aan elkaar"""
+        """
+        Deze test checkt of de dictionaries gelijk zijn aan elkaar
 
-        supergroepenlijst = {
+        """
+        supergrproductoepenlijst = {
             'Graanproducten_aardappelen': ['Graanproducten en bindmiddelen (voor vers bereide gerechten)',
                                            'aardapppelen & knolgewassen'],
             'Broodbeleg hartig': ['Broodbeleg hartig (self-service/kleinverpakking)',
@@ -54,7 +65,7 @@ class Testformulasmethods(unittest.TestCase):
         with open('csv/test_inkoopcheck_4.csv') as csvfile:
             reader = csv.DictReader(csvfile, delimiter=';')
             data = list(reader)
-        a = functies.omzetperperdiodevoorsuperproductgroep(data, supergroepenlijst)
+        a = functies.omzetperperdiodevoorsuperproductgroep(data, superproductgroepenlijst)
         b = {'Broodbeleg hartig': 223.8,
              'Broodbeleg_zoet': 0.0,
              'Dranken': 112.5,

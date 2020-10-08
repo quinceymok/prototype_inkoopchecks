@@ -1,24 +1,41 @@
 def omzetperperiodevoorproductgroep(productenlijst, productgroep):
-    # We beginnen altijd bij 0
+    """
+
+    This function checks if each product in the productenlijst is equal to the given superproductgroep. He’ll sum the
+    total amount.
+    :param productenlijst: dictionary
+    :param productgroep: string
+    :return: float
+
+    """
+    # We always start at 0
     sum = 0.0
-    # voor elk product die we in onze bovenstaande productenlijst hebben
     for product in productenlijst:
-        # als de productgroep van het product in de productenlijst gelijk is aan de meegegeven superproductgroep vd
-        # functie
+        # If the productgroep of the product is equal to the given superproductgroep of the function.
         if product['productgroep (keuzelijst)'] == productgroep:
-            # voeg het bedrag bij het totaal toe
+            # add the amoumt to the total supergroep
             sum += float(product["inkoopvolume"].replace(",", "."))
     if sum > 0.0:
         return sum
+    # if the number is less than 0.0
     return 0
 
 
-def omzetperperdiodevoorsuperproductgroep(productenlijst, supergroepenlijst):
-    # voor elk item in de supergroeplijst checkt het systeem of een item vaker voorkomt
+
+def omzetperperdiodevoorsuperproductgroep(productenlijst, superproductgroepenlijst):
+    """
+    This function checks if the superproductgroep is equal to the productgroepen in the superproductgroepenlijst,
+    than he wil sums up the same items. It will return a dictionary
+    :param productenlijst: string
+    :param superproductgroepenlijst: dictionary of lists
+    :return: dictionary of lists
+
+    """
     dictionary = {}
-    for spg, productgroepen in supergroepenlijst.items():
+    # for each item in the supergroepenlijst, the system checks if the item occurs often.
+    for spg, productgroepen in superproductgroepenlijst.items():
         totaal = 0.0
-        # voor elke productgroep in de productgroepen maakt hij er een dictionary van
+        # for each productgroep in the productgroepen, a dictionary will be made
         for pg in productgroepen:
             totaal += omzetperperiodevoorproductgroep(productenlijst, pg)
         dictionary[spg] = totaal
